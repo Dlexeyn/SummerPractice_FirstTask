@@ -1,7 +1,5 @@
 package structures;
 
-// Priority Queue implementation in Java
-
 class OutPriorityQueue {
     // Function to heapify the tree
     void heapify(MyArrayList<AnswerPair> hT, int i) {
@@ -18,8 +16,8 @@ class OutPriorityQueue {
         // Swap and continue heapifying if root is not largest
         if (largest_index != i) {
             AnswerPair temp = hT.get(largest_index);
-            hT.set(hT.get(i), largest_index);
-            hT.set(temp, i);
+            hT.set(largest_index, hT.get(i));
+            hT.set(i, temp);
 
             heapify(hT, largest_index);
         }
@@ -49,8 +47,8 @@ class OutPriorityQueue {
         }
 
         AnswerPair temp = hT.get(i);
-        hT.set(hT.get(size - 1), i);
-        hT.set(temp, size - 1);
+        hT.set(i, hT.get(size - 1));
+        hT.set(size - 1, temp);
 
         hT.remove(size - 1);
         for (int j = size / 2 - 1; j >= 0; j--) {
@@ -66,7 +64,7 @@ class OutPriorityQueue {
         if(hT.size() > 1)
         {
             AnswerPair lastPair = hT.get(hT.size() - 1);
-            hT.set(lastPair, 0);
+            hT.set(0, lastPair);
             hT.remove(hT.size() - 1);
             heapify(hT, 0);
         }

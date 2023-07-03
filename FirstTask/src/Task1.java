@@ -1,18 +1,18 @@
-import java.util.*;
 import structures.*;
+import java.util.Scanner;
 
 public class Task1 {
     public static void main(String[] args) {
-        List<Character> alphabet = Arrays.asList('A', 'C', 'G', 'T', 'N');
-        Aho_Corasick_tree solver_tree = new Aho_Corasick_tree(alphabet);
+        char[] alphabet = new char[]{'A', 'C', 'G', 'T', 'N'};
+        AhoCorasickTree solver_tree = new AhoCorasickTree(alphabet);
         Scanner scanner = new Scanner(System.in);
         String text = scanner.next();
         int pattern_num = scanner.nextInt();
-        Map<String, Integer> patterns = new HashMap<>();
+        MyArrayList<String> patterns = new MyArrayList<>();
         for (int i = 0; i < pattern_num; i++) {
             String temp_line = scanner.next();
             solver_tree.addStringtoTree(temp_line);
-            patterns.put(temp_line, i + 1);
+            patterns.add(temp_line);
         }
 
         solver_tree.find_samples(text, patterns);
